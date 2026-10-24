@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>لوحة SK</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#3b2a4d;--mut:#7a6a8a;--bg:#f6f1fa;--card:#fff;--line:#e2d6ee;--acc:#7b4fa8;--acc2:#5c3a85;--ok:#1f6b3d;--bad:#8a2a2a}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:Tajawal,Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.hide{display:none!important}
+h1{font-size:22px;margin:0;color:var(--acc2)}h2{font-size:17px;margin:0 0 8px;color:var(--acc2)}
+.btn{display:inline-block;border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;background:var(--acc2);color:#fff;text-align:center;text-decoration:none}
+.btn.alt{background:transparent;color:var(--acc2);border:1px solid var(--acc2)}
+.btn.sm{padding:7px 12px;font-size:14px}.btn.ok{background:var(--ok)}.btn.bad{background:transparent;color:var(--bad);border:1px solid var(--bad)}
+.btn:disabled{opacity:.6}
+input{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fdfbff;color:var(--ink)}
+.mut{color:var(--mut);font-size:14px}
+#lock{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);z-index:60}
+#lock .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;max-width:340px;width:100%;text-align:center}
+#lock input{margin:12px 0;text-align:center;direction:ltr}#le{color:var(--bad);margin:8px 0 0;min-height:1.5em}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px}
+.bar{display:flex;gap:8px;flex-wrap:wrap}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px 60px;display:grid;gap:16px}
+@media(min-width:900px){.wrap{grid-template-columns:320px 1fr;align-items:start}#ed:not(.hide){display:grid;gap:16px;grid-template-columns:1fr 400px;align-items:start}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.oc{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;cursor:pointer;background:#fdfbff}
+.oc.on{border-color:var(--acc);background:#f7f0fc}.oc b{font-size:16px}.oc small{display:block;color:var(--mut)}
+.tag{display:inline-block;font-size:12.5px;border-radius:20px;padding:0 9px;margin-inline-end:4px;border:1px solid var(--line)}
+.tag.ok{background:#e8f5ec;color:var(--ok);border-color:#bfe0cb}.tag.wt{background:#fff4e0;color:#8a5a00;border-color:#f0d9a8}
+.info{background:#f1e8f8;border-radius:10px;padding:10px 12px;font-size:14.5px;margin:0 0 12px}
+.warn{background:#fbeaea;color:var(--bad);border-radius:10px;padding:8px 12px;font-size:14.5px;margin:0 0 12px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.lnk{direction:ltr;text-align:left;word-break:break-all;background:#fdfbff;border:1px dashed var(--acc);border-radius:8px;padding:8px 10px;font-size:14px;margin:8px 0}
+#pvbox{display:none}
+@media(min-width:900px){#pvbox{display:block;position:sticky;top:10px}.openpv{display:none}.closepv{display:none}}
+#pvbox iframe{width:100%;height:76vh;border:1px solid var(--line);border-radius:12px;background:#fff}
+#pvbox.full{display:block;position:fixed;inset:0;z-index:40;background:var(--bg);padding:10px}
+#pvbox.full iframe{height:calc(100vh - 66px)}
+#pvbox .pvh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:20px;font-size:14px;z-index:70;opacity:0;pointer-events:none;transition:opacity .25s}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+
+<div id="lock"><div class="box">
+<h1>لوحة SK</h1>
+<p class="mut">اكتب مفتاح الأدمن (المحفوظ في إعدادات Netlify باسم ADMIN_KEY)</p>
+<input id="lk" type="password" autocomplete="off" aria-label="مفتاح الأدمن">
+<button class="btn" id="lb" type="button">دخول</button>
+<p id="le" role="alert"></p>
+</div></div>
+
+<div id="app" class="hide">
+<header>
+<h1>لوحة SK</h1>
+<div class="bar">
+<button class="btn alt sm" id="nt" type="button">تفعيل التنبيهات</button>
+<button class="btn alt sm" id="rf" type="button">تحديث</button>
+<button class="btn alt sm" id="out" type="button">خروج</button>
+</div>
+</header>
+<div class="wrap">
+<div><section class="panel"><h2>الطلبات</h2><div id="list"></div></section>
+<section class="panel" style="margin-top:16px"><h2>الأسعار</h2><div id="pr"></div><p class="mut">لتغييرها عدّل sk-order.html و api.mjs معاً.</p></section></div>
+<section id="ed" class="hide">
+<div class="panel">
+<h2 id="edt"></h2>
+<div id="warn" class="warn hide"></div>
+<div class="info" id="meta"></div>
+<div class="acts">
+<button class="btn ok" id="appr" type="button"></button>
+<button class="btn alt openpv" id="opv" type="button">معاينة</button>
+<a class="btn alt sm" id="wa" target="_blank" rel="noopener">مراسلة الزبون واتساب</a>
+</div>
+<div id="lw" class="hide">
+<p class="mut">رابط الزبون (يفتح عنده فوراً بعد الوصل):</p>
+<div class="lnk" id="url"></div>
+<div class="acts">
+<button class="btn alt sm" id="cu" type="button">نسخ الرابط</button>
+<button class="btn alt sm" id="cm" type="button">نسخ رسالة للزبون</button>
+<a class="btn alt sm" id="op" target="_blank" rel="noopener">فتح الرابط</a>
+</div>
+</div>
+<div class="acts">
+<button class="btn alt sm" id="dlf" type="button">تنزيل نسخة الدعوة (ملف HTML)</button>
+<button class="btn bad sm" id="del" type="button">حذف الطلب</button>
+</div>
+</div>
+<div id="pvbox"></div>
+</section>
+</div>
+</div>
+
+<div id="toast" role="status"></div>
+<script src="/sk-engine.js"></script>
+<script>
+var $=function(i){return document.getElementById(i)};
+function tt(t){var e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(tt.i);tt.i=setTimeout(function(){e.classList.remove("on")},2400)}
+function esc2(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var PR=[["السعر الأساسي",7],["إضافة صورة",2],["عداد تنازلي وتقويم",3],["أسماء الوالدين",1],["الموقع على الخريطة",1],["قصة ومعرض صور",5],["تأثير افتتاح الدعوة",3],["خلفية متحركة",2],["قالب وخط وألوان",3]];
+$("pr").innerHTML=PR.map(function(r){return'<div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:3px 0"><span>'+r[0]+'</span><b>'+r[1]+' د</b></div>'}).join("");
+var KEY=localStorage.getItem("sk_key")||"",cur=null,ORD=[],S2=null;
+var XN={photo:"صورة",count:"عداد وتقويم",par:"أسماء الوالدين",map:"خريطة",story:"قصة ومعرض",open:"تأثير افتتاح",anim:"خلفية متحركة",style:"قالب وألوان"};
+
+function api(action,id){
+ return fetch("/api/admin",{method:"POST",headers:{"content-type":"application/json","x-admin-key":KEY},body:JSON.stringify({action:action,id:id})})
+ .then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j})})}
+
+/* ===== الدخول ===== */
+function login(){
+ KEY=$("lk").value.trim()||KEY;$("le").textContent="";
+ api("list").then(function(j){localStorage.setItem("sk_key",KEY);$("lock").classList.add("hide");$("app").classList.remove("hide");show(j.orders)})
+ .catch(function(e){
+  $("lock").classList.remove("hide");
+  $("le").textContent=e&&e.error==="no_key"?"ما في ADMIN_KEY بإعدادات Netlify بعد (8 أحرف على الأقل).":e&&e.error==="unauthorized"?"المفتاح غير صحيح":"تعذر الاتصال بالخادم"})}
+$("lb").addEventListener("click",login);
+$("lk").addEventListener("keydown",function(e){if(e.key==="Enter")login()});
+$("out").addEventListener("click",function(){localStorage.removeItem("sk_key");location.reload()});
+$("rf").addEventListener("click",function(){refresh().then(function(){tt("تم التحديث")})});
+if(KEY)login();
+
+function refresh(){return api("list").then(function(j){show(j.orders)}).catch(function(){tt("تعذر التحديث")})}
+setInterval(function(){if(KEY&&!$("app").classList.contains("hide"))refresh()},20000);
+
+var known=null;
+function beep(){try{var A=new (window.AudioContext||window.webkitAudioContext)(),o=A.createOscillator(),g=A.createGain();o.connect(g);g.connect(A.destination);o.frequency.value=880;g.gain.value=.15;o.start();setTimeout(function(){o.stop();A.close()},350)}catch(e){}}
+function alertNew(n){
+ var t="طلب جديد: "+n.map(function(o){return(o.n1||"")+(o.n2?" و "+o.n2:"")+" ("+o.total+" د)"}).join("، ");
+ tt(t);beep();try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}
+ try{if(window.Notification&&Notification.permission==="granted")new Notification("لوحة SK",{body:t})}catch(e){}}
+function chkNew(a){
+ var p=a.filter(function(o){return o.status!=="paid"}).length;document.title=(p?"("+p+") ":"")+"لوحة SK";
+ if(known){var n=a.filter(function(o){return o.status!=="paid"&&known.indexOf(o.id)<0});if(n.length)alertNew(n)}
+ known=a.map(function(o){return o.id})}
+$("nt").addEventListener("click",function(){
+ if(!window.Notification){tt("المتصفح لا يدعم إشعارات الصفحة، استخدم تنبيه الإيميل");return}
+ Notification.requestPermission().then(function(p){tt(p==="granted"?"تم تفعيل التنبيهات":"ما انسمح بالتنبيهات")})});
+function show(a){
+ chkNew(a);ORD=a.sort(function(x,y){return(y.created||"").localeCompare(x.created||"")});
+ var L=$("list");L.innerHTML=ORD.length?"":'<p class="mut">ما في طلبات بعد.</p>';
+ ORD.forEach(function(o){
+  var d=document.createElement("div");d.className="oc"+(cur&&cur.id===o.id?" on":"");
+  var T=(typeof TYPES!=="undefined"&&TYPES[o.type])||{n:""};
+  d.innerHTML='<b>'+esc2(o.n1)+(o.n2?" و "+esc2(o.n2):"")+'</b><small>'+esc2(T.n)+" - "+esc2(o.id)+" - "+esc2(o.total)+' د</small><span class="tag '+(o.status==="paid"?"ok":"wt")+'">'+(o.status==="paid"?"مدفوع":"طلب جديد: لم يُدفع")+'</span>';
+  d.addEventListener("click",function(){open_(o.id)});L.appendChild(d)})}
+
+/* ===== تفاصيل الطلب ===== */
+function linkOf(id){return location.origin+"/i/"+id.toLowerCase()}
+function paint(){
+ var o=cur,c=o.customer||{},p=o.payment||{};
+ $("edt").textContent=(o.S.n1||"")+(o.S.n2?" و "+o.S.n2:"");
+ $("meta").innerHTML="رقم الطلب: <b dir='ltr'>"+esc2(o.id)+"</b><br>الزبون: "+esc2(c.name)+" - <span dir='ltr'>"+esc2(c.phone)+"</span><br>المبلغ المطلوب: <b>"+esc2(o.total)+" دينار</b>"+(p.payer?"<br>المحوِّل: "+esc2(p.payer)+(p.ref?" - مرجع: "+esc2(p.ref):""):"")+(o.note?"<br>ملاحظة الزبون: "+esc2(o.note):"")+"<br>الإضافات: "+((o.extras||[]).map(function(x){return XN[x]||x}).join("، ")||"بدون");
+ var w=$("warn");if(o.clientTotal&&o.clientTotal!==o.total){w.classList.remove("hide");w.textContent="انتبه: الزبون شاف مبلغ "+o.clientTotal+" والمحسوب فعلياً "+o.total+". طابق مع الحوالة."}else w.classList.add("hide");
+ var paid=o.status==="paid";
+ $("appr").textContent=paid?"تم الوصل ✔ (اضغط للإلغاء)":"وصل: استلمت الدفع، افتح الدعوة";
+ $("appr").className="btn "+(paid?"alt":"ok");
+ $("wa").href="https://wa.me/"+waIntl(c.phone);$("lw").classList.toggle("hide",!paid);$("url").textContent=linkOf(o.id);$("op").href=linkOf(o.id)}
+function open_(id){
+ api("get",id).then(function(j){
+  cur=j.order;S2=cur.S;$("ed").classList.remove("hide");paint();
+  $("pvbox").innerHTML='<div class="pvh"><b>معاينة (بدون علامة مائية)</b><span><label style="display:inline-flex;gap:6px;align-items:center;font-size:14px"><input type="checkbox" id="fxon" style="width:auto">تأثير الافتتاح</label> <button class="btn alt sm closepv" id="cpv" type="button">إغلاق</button></span></div><iframe id="pvf" title="معاينة" sandbox="allow-scripts"></iframe>';
+  $("fxon").addEventListener("change",pv);$("cpv").addEventListener("click",function(){$("pvbox").classList.remove("full")});
+  pv();show(ORD);
+  if(window.innerWidth<900)$("ed").scrollIntoView({behavior:"smooth"})
+ }).catch(function(){tt("تعذر فتح الطلب")})}
+function pv(){$("pvf").srcdoc=build(S2,!$("fxon").checked)}
+$("opv").addEventListener("click",function(){$("pvbox").classList.add("full")});
+
+/* ===== وصل ===== */
+$("appr").addEventListener("click",function(){
+ var b=this,paid=cur.status==="paid";
+ if(paid&&!confirm("إلغاء الوصل؟ رابط الزبون بيتسكّر لحد ما توصّل من جديد."))return;
+ b.disabled=true;
+ api(paid?"unapprove":"approve",cur.id).then(function(j){
+  cur.status=j.status;paint();refresh();
+  tt(j.status==="paid"?"تم. الرابط فتح عند الزبون":"انلغى الوصل")})
+ .catch(function(){tt("تعذر التنفيذ، جرّب مرة ثانية")})
+ .then(function(){b.disabled=false})});
+
+function cp(t,m){try{navigator.clipboard.writeText(t).then(function(){tt(m)},function(){tt("تعذر النسخ")})}catch(e){tt("تعذر النسخ")}}
+$("cu").addEventListener("click",function(){cp(linkOf(cur.id),"تم نسخ الرابط")});
+$("cm").addEventListener("click",function(){cp("مرحباً، تم تأكيد دفعك وجهزت دعوتك \u{1F389}\nهذا رابطها:\n"+linkOf(cur.id),"تم نسخ الرسالة")});
+
+/* ===== نسخة ملف HTML للدعوة ===== */
+function dl(blob,name){var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000)}
+$("dlf").addEventListener("click",function(){
+ var h=build(cur.S,false).replace("<head>",function(){return'<head><meta name="robots" content="noindex">'});
+ dl(new Blob([h],{type:"text/html;charset=utf-8"}),cur.id.toLowerCase()+".html");tt("نزلت نسخة الدعوة")});
+$("del").addEventListener("click",function(){
+ if(!confirm("حذف الطلب "+cur.id+" نهائياً؟ رابط الزبون بيتوقف."))return;
+ api("delete",cur.id).then(function(){cur=null;$("ed").classList.add("hide");refresh();tt("تم الحذف")}).catch(function(){tt("تعذر الحذف")})});
+</script>
+</body>
+</html>

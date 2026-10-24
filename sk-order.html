@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اطلب دعوتك | SK ديزاين</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@700&family=Katibeh&family=Lalezar&family=Rakkas&family=Gulzar&family=Reem+Kufi:wght@500&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#3b2a4d;--mut:#7a6a8a;--bg:#f6f1fa;--card:#fff;--line:#e2d6ee;--acc:#7b4fa8;--acc2:#5c3a85;--gold:#b8955a}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:Tajawal,Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+header{text-align:center;padding:28px 16px 8px}
+header h1{font-family:Amiri,serif;font-size:30px;margin:0;color:var(--acc2)}
+header p{margin:4px 0 0;color:var(--mut);font-size:15px}
+.wrap{max-width:1060px;margin:0 auto;padding:12px 14px 60px;display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:900px){.wrap{grid-template-columns:1fr 380px;align-items:start}.pv{position:sticky;top:14px}}
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+fieldset{border:0;padding:0;margin:0 0 20px}
+legend{font-weight:700;color:var(--acc2);padding:0;margin-bottom:4px;font-size:17px}
+.sub{font-size:13px;color:var(--mut);margin:0 0 6px}
+label{display:block;font-size:14px;margin:10px 0 4px;color:var(--mut)}
+input,select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fdfbff;color:var(--ink)}
+input[type=color]{padding:2px;height:40px}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.base{display:flex;justify-content:space-between;background:#f1e8f8;border-radius:10px;padding:10px 14px;font-weight:700;margin:0 0 14px}
+.ex{border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:12px;background:#fdfbff}
+.ex.on{border-color:var(--acc);background:#f7f0fc}
+.ex-h{display:flex;align-items:center;gap:10px;cursor:pointer;margin:0;color:var(--ink);font-size:16px;font-weight:700}
+.ex-h input{width:auto;margin:0}
+.ex-h b{margin-inline-start:auto;color:var(--acc2);font-weight:700;white-space:nowrap}
+.ex p{margin:6px 0 0;font-size:13.5px;color:var(--mut)}
+.ex .fld{display:none;margin-top:6px}.ex.on .fld{display:block}
+.total{display:flex;justify-content:space-between;align-items:center;background:var(--acc2);color:#fff;border-radius:10px;padding:12px 14px;font-weight:700;margin:6px 0 14px}
+.btn{width:100%;border:0;border-radius:10px;padding:13px;font:inherit;font-weight:700;font-size:16px;cursor:pointer;background:var(--acc2);color:#fff}
+.btn.alt{background:transparent;color:var(--acc2);border:1px solid var(--acc2);margin-top:8px}
+.btn:disabled{opacity:.6}
+.note{font-size:13px;color:var(--mut);margin:8px 0 0}
+#st input{width:100%;direction:ltr;text-align:left;margin:8px 0}#st .acts{display:flex;gap:8px;flex-wrap:wrap}#st .acts .btn{flex:1;min-width:140px;margin-top:0}#st .ig{display:block;margin-top:8px}#st{margin-top:12px;padding:14px;border-radius:10px;background:#f1e8f8;border:1px solid var(--line);font-size:15px}#st p{margin:6px 0}#st .btn{display:inline-block;margin-top:6px;text-decoration:none}
+#msg,#pmsg{margin-top:12px;padding:12px;border-radius:8px;display:none;font-size:15px}
+#msg.ok,#pmsg.ok{display:block;background:#e8f5ec;color:#1f5a33}
+#msg.err,#pmsg.err{display:block;background:#fbeaea;color:#8a2a2a}
+.mb.pay{text-align:start}.mb.pay h3{margin:0 0 8px;color:var(--acc2);font-size:19px}.mb.pay p{margin:8px 0;font-size:15px}.mb.pay .base b{font-size:18px}
+.hide{display:none!important}
+.pv h2{font-size:15px;color:var(--mut);text-align:center;margin:0 0 8px;font-weight:500}
+.card{--cA:#5c3a85;--cT:#3b2a4d;position:relative;overflow:hidden;border-radius:12px;min-height:500px;padding:38px 24px 30px;text-align:center;color:var(--cT);
+background:linear-gradient(160deg,color-mix(in srgb,var(--cA) 8%,#fff),color-mix(in srgb,var(--cA) 28%,#fff));
+border:1px solid color-mix(in srgb,var(--cA) 35%,#fff);box-shadow:0 10px 30px rgba(92,58,133,.18);user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.card::before{content:"";position:absolute;inset:10px;border:1px solid var(--gold);border-radius:8px;pointer-events:none}
+.card *{font-family:Amiri,serif}
+.card.dk{--cT:#f3ecfa;background:linear-gradient(160deg,color-mix(in srgb,var(--cA) 30%,#120c1c),color-mix(in srgb,var(--cA) 55%,#120c1c))}
+.card.t-modern{border-radius:4px}.card.t-modern::before{border-color:var(--cA);border-radius:0}
+.card.t-glass{background:linear-gradient(135deg,color-mix(in srgb,var(--cA) 25%,#fff),color-mix(in srgb,var(--cA) 8%,#fff) 50%,color-mix(in srgb,var(--cA) 35%,#fff));border-color:#fff}.card.t-glass::before{border-color:#fff9;border-radius:16px}
+.card.t-floral::after{content:"❀ ✿ ❀";position:absolute;top:14px;left:0;right:0;color:var(--gold);letter-spacing:8px;font-size:18px}
+.card.t-luxe{border-color:var(--gold)}.card.t-luxe::before{border:3px double var(--gold)}
+.card.t-arch{border-radius:200px 200px 12px 12px;padding-top:70px}
+.c-top,.c-names,.c-sec h4{color:var(--cA)}
+.card.dk .c-top,.card.dk .c-names,.card.dk .c-sec h4{color:color-mix(in srgb,var(--cA) 35%,#fff)}
+.c-fx{font-size:12.5px;margin-bottom:8px;opacity:.85;font-family:Tajawal,sans-serif!important}
+.c-top{font-size:20px;margin-bottom:8px}
+.c-intro{font-size:17px;line-height:2;margin:0 0 12px;white-space:pre-line}
+.c-names{font-size:30px;font-weight:700;margin:8px 0;line-height:1.5}
+.c-and{font-size:20px;color:var(--gold)}
+.c-photo{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin:6px auto;display:block;pointer-events:none}
+.c-info{font-size:17px;line-height:2;margin-top:10px}
+.cd{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.cd div{min-width:54px;padding:4px;border:1px solid var(--cA);border-radius:10px}
+.cd b{display:block;font-size:22px;line-height:1.3}.cd small{font-size:12px}
+.c-sec{margin-top:14px;font-size:16px;line-height:1.9;white-space:pre-line}.c-sec h4{margin:0;font-size:19px}
+.c-gal{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.c-gal img{width:62px;height:62px;object-fit:cover;border-radius:8px;border:2px solid #fff;pointer-events:none}
+.c-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.c-rsvp{display:inline-block;padding:7px 20px;border-radius:20px;background:var(--cA);color:#fff;font-size:16px}
+.c-rsvp.alt{background:transparent;color:var(--cA);border:1px solid var(--cA)}
+.card.dk .c-rsvp.alt{color:#fff;border-color:#fff}
+.parts{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:.45}
+.parts i{position:absolute;top:-24px;font-style:normal;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(640px) rotate(240deg)}}
+.wm{position:absolute;inset:-40%;display:flex;flex-wrap:wrap;gap:46px 34px;align-content:center;justify-content:center;transform:rotate(-24deg);pointer-events:none;z-index:5}
+.wm span{font-family:Tajawal,sans-serif;font-size:19px;font-weight:700;color:rgba(60,30,90,.2);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+.chips span{font-size:12.5px;background:#fff;border:1px solid var(--line);color:var(--acc2);border-radius:20px;padding:2px 10px}
+.pb{width:auto;padding:7px 16px;font-size:14px;margin-top:8px}
+.md{position:fixed;inset:0;background:rgba(30,15,50,.75);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
+.mb{background:#fff;border-radius:14px;padding:14px;max-width:560px;width:100%;max-height:90vh;overflow:auto;text-align:center}
+.mb .btn{margin-top:12px}
+#mi .card{text-align:center}
+.gl{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));margin-top:12px}
+.gl img{width:100%;height:110px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.mt{font-size:13px;color:var(--mut);margin:10px 0 0}
+.sw{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.sw button{width:34px;height:34px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer;padding:0}
+.sw button.on{box-shadow:0 0 0 3px var(--acc2)}
+.pvw{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.pvw iframe{width:100%;height:560px;border:0;display:block}
+.pvw.big iframe{height:78vh}
+@media print{body{display:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>اطلب دعوتك الإلكترونية</h1>
+<p>عبّي التفاصيل وفعّل الإضافات وشاهد الدعوة مباشرة، ثم عاينها كاملة وأرسلها لنا لنتفق على الدفع</p>
+</header>
+
+<div class="wrap">
+<form id="f" name="sk-order" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="sk-order">
+<p class="hide"><input name="bot-field" tabindex="-1" autocomplete="off"></p>
+
+<fieldset>
+<legend>التصميم الأساسي</legend>
+<div class="base"><span>دعوة بسيطة جاهزة</span><span id="basep"></span></div>
+<label for="occ">نوع المناسبة</label>
+<select id="occ" name="occasion"></select>
+<div class="row">
+<div><label for="n1" id="l1">الاسم الأول</label><input id="n1" name="name1" required></div>
+<div id="w2"><label for="n2" id="l2">الاسم الثاني</label><input id="n2" name="name2"></div>
+</div>
+<div class="row">
+<div><label for="dt">التاريخ</label><input type="date" id="dt" name="date" required></div>
+<div><label for="tm">الوقت</label><input type="time" id="tm" name="time" required></div>
+</div>
+<label for="ve">المكان</label>
+<input id="ve" name="venue" placeholder="مثال: قاعة الياسمين، عمّان" required>
+<label for="wa">رقم واتساب لاستقبال تأكيد الحضور</label>
+<input id="wa" name="rsvp_whatsapp" inputmode="tel" dir="ltr" placeholder="07XXXXXXXX" required>
+<label for="tx">نص الدعوة (عدّله كما تشاء)</label>
+<textarea id="tx" name="intro_text" rows="4"></textarea>
+</fieldset>
+
+<fieldset>
+<legend>إضافات اختيارية</legend>
+<p class="sub">اختر ما تريد، وسيظهر لك سعر كل إضافة.</p>
+<div id="extras"></div>
+</fieldset>
+
+<fieldset>
+<legend>بياناتك للتواصل</legend>
+<div class="row">
+<div><label for="cn">اسمك</label><input id="cn" name="customer_name" required></div>
+<div><label for="cp">رقمك</label><input id="cp" name="customer_phone" inputmode="tel" dir="ltr" required></div>
+</div>
+</fieldset>
+
+<div class="total"><span>الإجمالي</span><span id="tot"></span></div>
+<input type="hidden" name="total" id="totf">
+<input type="hidden" name="summary" id="sumf">
+<input type="hidden" name="order_id"><input type="hidden" name="payer"><input type="hidden" name="pay_ref"><input type="hidden" name="payment_method">
+<input type="file" name="order_file" class="hide">
+<button class="btn" type="button" id="go">معاينة كاملة ثم إرسال الطلب</button>
+<p class="note">ما في دفع الآن. تصمم وتعاين وترسل لنا طلبك، وبنتواصل معك لنتفق على الدفع. وبعد ما تحاسبنا بتفتح دعوتك بنفس التصميم اللي عاينته.</p>
+<div id="msg" role="status"></div>
+<div id="st" class="hide" role="status"></div>
+</form>
+
+<aside class="pv">
+<h2>معاينة مباشرة، كل إضافة تفعّلها تظهر هنا</h2>
+<div class="pvw"><iframe id="pv" title="معاينة" sandbox="allow-scripts allow-same-origin"></iframe><div class="wm" id="wm"></div></div>
+<div class="chips" id="chips"></div>
+</aside>
+</div>
+
+<div class="md hide" id="md" role="dialog" aria-modal="true"><div class="mb"><div id="mi"></div><button class="btn" type="button" id="mpay">أعجبني، أرسل التصميم</button><button class="btn alt" type="button" id="mx">رجوع للتعديل</button></div></div>
+<div class="md hide" id="pd" role="dialog" aria-modal="true"><div class="mb pay">
+<h3>إرسال تصميمك إلى SK</h3>
+<div class="base"><span>سعر التصميم</span><span id="payamt"></span></div>
+<p>ما في دفع الآن. بنراجع تصميمك ونتواصل معك على رقمك لنتفق على الدفع، وبعد ما تحاسبنا بتفتح دعوتك بنفس التصميم اللي عاينته.</p>
+<label for="cnote">ملاحظات أو أفضل طريقة تواصل (اختياري)</label><textarea id="cnote" rows="3" placeholder="مثال: واتساب بعد الساعة 5"></textarea>
+<div id="pmsg" role="status"></div>
+<button class="btn" type="button" id="psend">أرسل طلبي</button>
+<button class="btn alt" type="button" id="pback">رجوع</button>
+</div></div>
+<form name="order-alert" method="POST" data-netlify="true" hidden><input name="order_id"><input name="total"><input name="customer"><input name="phone"><input name="payer"><input name="admin_link"></form>
+<script src="sk-engine.js"></script>
+<script>
+/* ===== إعدادات صاحب الموقع ===== */
+var CONFIG={
+ cliq:"AHMADSIK",instagram:"https://www.instagram.com/sk.design9/",
+ currency:"دينار",
+ basePrice:7,
+ watermark:"معاينة - SK ديزاين",
+ types:{
+  wedding:{pl1:"والد العريس",pl2:"والد العروس",n:"حفل زفاف",two:1,l1:"اسم العريس",l2:"اسم العروس",b:"﷽",t:"يتشرف أهل العروسين بدعوتكم لحضور حفل زفافهما، سائلين الله لهما حياة سعيدة، ولكم دوام الفرح والمسرات."},
+  engage:{pl1:"والد الخطيب",pl2:"والد الخطيبة",n:"حفل خطوبة",two:1,l1:"اسم الخطيب",l2:"اسم الخطيبة",b:"﷽",t:"يسرّنا دعوتكم لمشاركتنا فرحة الخطوبة، وتشريفنا بحضوركم الكريم."},
+  katb:{pl1:"والد العريس",pl2:"والد العروس",n:"حفل كتب كتاب",two:1,l1:"اسم العريس",l2:"اسم العروس",b:"﷽",t:"يتشرف أهل العروسين بدعوتكم لحضور حفل عقد القران، وتقاسم الفرحة معهم."},
+  henna:{pl1:"والد العروس",pl2:"والدة العروس",n:"ليلة الحنّاء",two:0,l1:"اسم العروس",b:"✦",t:"تتشرف أسرة العروس بدعوتكم لحضور ليلة الحنّاء، لتكتمل فرحتنا بوجودكم."},
+  grad:{pl1:"والد الخريج",pl2:"والدة الخريج",n:"حفل تخرج",two:0,l1:"اسم الخريج",b:"✦",t:"يسرّنا دعوتكم لمشاركتنا فرحة التخرج، وتشريفنا بحضوركم الكريم."},
+  baby:{pl1:"الأب",pl2:"الأم",n:"استقبال مولود",two:0,l1:"اسم المولود",b:"✦",t:"بكل الحب والامتنان نتشرف بدعوتكم للاحتفال معنا بقدوم مولودنا الجديد."}
+ },
+ extras:[
+  {id:"photo",label:"إضافة صورة",price:2,desc:"صورة دائرية أنيقة (للعروسين أو صاحب المناسبة) تظهر أعلى الدعوة.",
+   html:'<input type="file" name="photo" id="phf" accept="image/*">'},
+  {id:"count",label:"عداد تنازلي وزر التقويم",price:3,desc:"عداد حي يعدّ الأيام والساعات المتبقية، وزر يضيف الحفل إلى تقويم الضيف بضغطة واحدة. يعتمد على التاريخ والوقت أعلاه."},
+  {id:"par",label:"أسماء الوالدين",price:1,desc:"أسماء الوالدين أعلى الدعوة كالبطاقات الرسمية (والد العريس ووالد العروس)، حسب رغبتكم.",
+   html:'<label id="pl1">والد العريس</label><input name="p1" placeholder="مثال: السيد محمد أحمد"><label id="pl2">والد العروس</label><input name="p2" placeholder="مثال: السيد خالد علي">'},
+  {id:"map",label:"الموقع على الخريطة",price:1,desc:"عنوان تفصيلي وزر يفتح الموقع مباشرة على خرائط جوجل.",
+   html:'<label>العنوان</label><input name="address"><label>رابط الخريطة</label><input name="map" type="url" dir="ltr" placeholder="https://maps.google.com/...">'},
+  {id:"story",label:"قصتنا ومعرض الصور",price:5,desc:"نبذة قصيرة بقلمكم، ومعرض يتصفحه الضيوف بالسحب حتى 6 صور.",
+   html:'<label>القصة</label><textarea name="story" rows="3"></textarea><label>الصور (حتى 6)</label><input type="file" name="gallery" accept="image/*" multiple>'},
+  {id:"open",label:"تأثير افتتاح الدعوة",price:3,desc:"الدعوة تبدأ مغلقة وتنفتح أمام الضيف بتأثير جميل.",
+   html:'<select name="open_fx"><option>ظرف يُفتح</option><option>ستارة تُفتح</option><option>شريط يُسحب</option><option>كتاب يُفتح</option><option>أبواب تُفتح</option><option>ختم شمعي</option><option>بوابة ملكية ذهبية</option><option>ظرف فاخر ثلاثي الأبعاد</option><option>طومار يتفتح</option><option>علبة هدية بالقصاصات</option></select>'},
+  {id:"anim",label:"خلفية متحركة",price:2,desc:"تأثير ناعم يتحرك خلف الدعوة طوال التصفح.",
+   html:'<select name="bg_fx"><option>بتلات متساقطة</option><option>بريق متلألئ</option><option>غبار ذهبي</option><option>أضواء ناعمة</option></select>'},
+  {id:"style",label:"قالب وخط وألوان",price:3,desc:"اختيار قالب من 6 قوالب، وخط لأسماء العروسين، و11 لوحة ألوان جاهزة أو لون مخصص، مع وضع داكن وصورة خلفية إن رغبت.",
+   html:'<label>القالب</label><select name="template"><option>ملكي كلاسيكي</option><option>مودرن بسيط</option><option>زجاجي عصري</option><option>ورود وزهور</option><option>ذهبي فاخر</option><option>قوس بوهيمي</option></select><label>خط الأسماء</label><select name="name_font"><option>حسب القالب</option><option>رقعة فخمة</option><option>ديواني مزخرف</option><option>ثلث عريض</option><option>مزخرف سميك</option><option>نستعليق ملكي</option><option>كوفي هندسي</option><option>نسخ كلاسيكي</option></select><label>الألوان (11 لوحة جاهزة)</label><div class="sw" id="thBox"></div><label>أو لون واحد والباقي يتناسق تلقائياً</label><input type="color" name="color" value="#7a4fb0"><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="dark" style="width:auto">وضع داكن</label><label>صورة خلفية (اختياري)</label><input type="file" name="bg_image" accept="image/*">'}
+ ]
+};
+/* ============================== */
+var $=function(i){return document.getElementById(i)};
+var photoURL="",dirty=false;
+function cur(){return CONFIG.types[$("occ").value]}
+function ex(id){return CONFIG.extras.filter(function(e){return e.id===id})[0]}
+function on(id){var c=document.querySelector('[data-ex="'+id+'"]');return c&&c.checked}
+
+Object.keys(CONFIG.types).forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=CONFIG.types[k].n;$("occ").appendChild(o)});
+$("basep").textContent=CONFIG.basePrice+" "+CONFIG.currency;
+CONFIG.extras.forEach(function(e){
+ var d=document.createElement("div");d.className="ex";d.id="ex_"+e.id;
+ d.innerHTML='<label class="ex-h"><input type="checkbox" name="x_'+e.id+'" data-ex="'+e.id+'"> '+e.label+'<b>+ '+e.price+' '+CONFIG.currency+'</b></label><p>'+e.desc+'</p>'+(e.html?'<div class="fld">'+e.html+'</div>':"");
+ $("extras").appendChild(d);
+});
+var w="";for(var i=0;i<40;i++)w+="<span>"+CONFIG.watermark+"</span>";$("wm").innerHTML=w;
+
+function total(){var t=CONFIG.basePrice;CONFIG.extras.forEach(function(e){if(on(e.id))t+=e.price});return t}
+function syncType(){
+ var T=cur();if($("pl1")){$("pl1").textContent=T.pl1;$("pl2").textContent=T.pl2}$("l1").textContent=T.l1;$("l2").textContent=T.l2||"";$("w2").style.display=T.two?"":"none";
+ if(!dirty)$("tx").value=T.t;
+}
+var thSel=0;
+TH.forEach(function(t,i){var b=document.createElement("button");b.type="button";b.title="لوحة "+(i+1);b.style.background="linear-gradient(135deg,"+t[0]+" 50%,"+t[3]+" 50%)";b.addEventListener("click",function(){thSel=i;render()});$("thBox").appendChild(b)});
+var TPL=["classic","modern","glass","floral","luxe","arch"];
+var galURLs=[],bgURL="",iTm,oid="";
+function svgURI(s){return"data:image/svg+xml,"+encodeURIComponent(s)}
+var DEMO_PH=svgURI("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='#d9c8ee'/><circle cx='50' cy='38' r='18' fill='#fff' opacity='.9'/><path d='M14 100c4-30 22-40 36-40s32 10 36 40z' fill='#fff' opacity='.9'/></svg>");
+var DEMO_G=["#d9c8ee","#f1d9c4","#c8e3d4"].map(function(c){return svgURI("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'><rect width='300' height='400' fill='"+c+"'/><text x='150' y='225' font-size='72' text-anchor='middle' fill='#7a4fb0' fill-opacity='.45'>❖</text></svg>")});
+function demoDT(){var d=new Date(Date.now()+30*864e5),z=function(n){return(n<10?"0":"")+n};return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate())+"T20:00"}
+
+/* demo=true: في المعاينة تظهر كل إضافة مفعّلة حتى لو لم تُعبَّأ بياناتها بعد (بيانات تجريبية) */
+function buildS(demo){
+ var T=cur(),F=$("f").elements,st=on("style"),FX=["env","cur","slide","book","doors","seal","gate","env3","scroll","box"],AM=["petal","sparkle","dust","bokeh"],NF=["auto","ruqaa","katibeh","lalezar","rakkas","gulzar","reem","amiri"];
+ var dtv=$("dt").value,tmv=$("tm").value;
+ S.type=$("occ").value;S.n1=$("n1").value.trim()||T.l1;S.n2=T.two?($("n2").value.trim()||T.l2):"";
+ S.date=fmtDate(dtv)||"التاريخ";S.time=fmtTime(tmv)||"الوقت";S.venue=$("ve").value.trim()||"المكان";
+ S.dt=on("count")?((dtv&&tmv)?dtv+"T"+tmv:(demo?demoDT():"")):"";
+ S.addr=on("map")?(F.address.value.trim()||(demo?"العنوان التفصيلي للمكان":"")):"";
+ S.map=on("map")?(F.map.value.trim()||(demo?"https://maps.google.com/":"")):"";
+ S.p1=on("par")?(F.p1.value.trim()||(demo?"السيد فلان الفلاني":"")):"";S.p2=on("par")?(F.p2.value.trim()||(demo?"السيد فلان الفلاني":"")):"";
+ S.wa=waIntl($("wa").value);S.intro=$("tx").value.trim()||T.t;S.bw="";
+ S.fx=on("open")?FX[F.open_fx.selectedIndex]:"none";S.am=on("anim")?AM[F.bg_fx.selectedIndex]:"none";
+ S.tp=st?TPL[F.template.selectedIndex]:"classic";S.nf=st?NF[F.name_font.selectedIndex]:"ruqaa";
+ S.story=on("story")?(F.story.value.trim()||(demo&&!galURLs.length?"هنا تكتبون نبذة قصيرة عن قصتكم، وتظهر مع معرض صور يتصفحه الضيوف بالسحب.":"")):"";
+ S.gal=on("story")?(galURLs.length?galURLs.slice():(demo?DEMO_G.slice():[])):[];
+ S.th=st?thSel:0;S.cc=F.color.value;S.dk=!!(st&&F.dark.checked);
+ S.bg=(st&&bgURL)?bgURL:"";S.ph=on("photo")?(photoURL||(demo?DEMO_PH:"")):"";
+ return S}
+var INJ='<style>body *:not(input):not(textarea){-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}</style><script>document.addEventListener("contextmenu",function(e){e.preventDefault()})<\/script>';
+function doc(demo){var h=build(buildS(demo),false);return h.indexOf("</body>")>-1?h.replace("</body>",function(){return INJ+"</body>"}):h+INJ}
+function render(){
+ var ch=[];
+ CONFIG.extras.forEach(function(e){var o=on(e.id);$("ex_"+e.id).classList.toggle("on",!!o);if(o)ch.push(e.label)});
+ $("chips").innerHTML=ch.map(function(x){return"<span>"+x+"</span>"}).join("");
+ [].forEach.call($("thBox").children,function(b,i){b.className=(i===thSel)?"on":""});
+ var t=total();$("tot").textContent=t+" "+CONFIG.currency;$("totf").value=t;
+ clearTimeout(iTm);iTm=setTimeout(function(){$("pv").srcdoc=doc(true)},450);
+}
+document.querySelectorAll("#f input,#f select,#f textarea").forEach(function(el){el.addEventListener("input",render);el.addEventListener("change",render)});
+$("occ").addEventListener("change",function(){syncType();render()});
+$("tx").addEventListener("input",function(){dirty=true});
+$("phf").addEventListener("change",function(){var f=this.files[0];if(!f){photoURL="";render();return}shrink(f,700,.8).then(function(u){photoURL=u;render()})});
+$("f").elements.gallery.addEventListener("change",function(){var fs=Array.prototype.slice.call(this.files,0,6);Promise.all(fs.map(function(f){return shrink(f,900,.75)})).then(function(a){galURLs=a.filter(Boolean);render()})});
+$("f").elements.bg_image.addEventListener("change",function(){var f=this.files[0];if(!f){bgURL="";render();return}shrink(f,1400,.7).then(function(u){bgURL=u;render()})});
+$("f").elements.color.addEventListener("input",function(){thSel="c";render()});
+$("f").elements.dark.addEventListener("change",function(){thSel="c";render()});
+$("f").addEventListener("submit",function(e){e.preventDefault()});
+function summary(){
+ var T=cur(),F=$("f").elements,st=on("style");
+ var fl=function(n){return F[n]&&F[n].files?F[n].files.length:0};
+ var L=["طلب دعوة جديد - SK ديزاين","رقم الطلب: "+oid,"الدفع: CliQ إلى "+CONFIG.cliq+" - المحوِّل: "+$("payer").value+($("pref").value?" - مرجع: "+$("pref").value:""),""];
+ L.push("قالب التصميم: "+(st?F.template.value:"ملكي كلاسيكي (الافتراضي)"));
+ L.push("خط أسماء العروسين: "+(st?F.name_font.value:"حسب القالب"));
+ L.push("نوع المناسبة: "+T.n);
+ L.push(T.l1+": "+$("n1").value);
+ if(T.two)L.push(T.l2+": "+($("n2").value||"-"));
+ L.push("التاريخ (نص): "+fmtDate($("dt").value));
+ L.push("موعد الحفل الدقيق: "+(on("count")&&$("dt").value&&$("tm").value?$("dt").value+"T"+$("tm").value:"بدون عداد"));
+ L.push("الوقت (نص): "+fmtTime($("tm").value));
+ L.push("اسم المكان: "+$("ve").value);
+ L.push("العنوان: "+(on("map")&&F.address.value?F.address.value:"-"));
+ L.push("رابط الخريطة: "+(on("map")&&F.map.value?F.map.value:"-"));
+ L.push("رقم واتساب التأكيد: "+waIntl($("wa").value));
+ L.push("قصتنا: "+(on("story")&&F.story.value?F.story.value.replace(/\n/g," "):"-"));
+ L.push("صور المعرض: "+(on("story")?fl("gallery")+" صور مرفقة":"-"));
+ L.push("تأثير افتتاح الدعوة: "+(on("open")?F.open_fx.value:"بدون تأثير"));
+ L.push("تأثير الخلفية المتحرك: "+(on("anim")?F.bg_fx.value:"بدون"));
+ L.push("نص الدعوة: "+$("tx").value.replace(/\n/g," "));
+ L.push("الألوان: "+(!st?"لوحة رقم 1 (الافتراضي)":(thSel==="c"?"لون مخصص "+F.color.value+(F.dark.checked?" - وضع داكن":""):"لوحة رقم "+(thSel+1))));
+ L.push("صورة الخلفية: "+(st&&fl("bg_image")?"مرفقة":"-"));
+ L.push("صورة العروسين: "+(on("photo")&&fl("photo")?"مرفقة":"-"));
+ L.push("الوالدان: "+(on("par")?(F.p1.value||"-")+" / "+(F.p2.value||"-"):"-"));
+ L.push("","الإضافات المطلوبة: "+(CONFIG.extras.filter(function(e){return on(e.id)}).map(function(e){return e.label}).join("، ")||"بدون"));
+ L.push("الإجمالي: "+total()+" "+CONFIG.currency);
+ L.push("الاسم: "+$("cn").value+" - "+$("cp").value);
+ return L.join("\n");
+}
+function show(c,t){var m=$("msg");m.className=c;m.textContent=t}
+
+function pshow(c,t){var m=$("pmsg");m.className=c;m.textContent=t}
+function bad(t){show("err",t);$("msg").scrollIntoView({behavior:"smooth",block:"center"});return false}
+function check(){
+ var f=$("f");if(!f.reportValidity())return false;var F=f.elements;
+ if(on("photo")&&!photoURL)return bad("فعّلت إضافة الصورة: اختر صورة أو ألغِ الإضافة.");
+ if(on("par")&&!F.p1.value.trim()&&!F.p2.value.trim())return bad("فعّلت إضافة أسماء الوالدين: اكتب اسماً واحداً على الأقل أو ألغِ الإضافة.");
+ if(on("map")&&!F.address.value.trim()&&!F.map.value.trim())return bad("فعّلت إضافة الخريطة: اكتب العنوان أو رابط الخريطة أو ألغِ الإضافة.");
+ if(on("story")&&!F.story.value.trim()&&!galURLs.length)return bad("فعّلت إضافة القصة والمعرض: اكتب القصة أو اختر صوراً أو ألغِ الإضافة.");
+ return true}
+var murls=[];
+function closeMd(){$("md").classList.add("hide")}
+function closePd(){$("pd").classList.add("hide")}
+$("mx").addEventListener("click",closeMd);
+$("md").addEventListener("click",function(e){if(e.target===this)closeMd()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeMd();closePd()}});
+$("go").addEventListener("click",function(){show("","");if(!check())return;
+ $("mi").innerHTML='<div class="pvw big"><iframe id="pv2" title="معاينة" sandbox="allow-scripts allow-same-origin"></iframe><div class="wm">'+w+'</div></div><p class="mt">هذه معاينة كاملة بكل الإضافات. العلامة المائلة تزول من الدعوة النهائية.</p>';
+ $("pv2").srcdoc=doc(true);$("md").classList.remove("hide")});
+$("mpay").addEventListener("click",function(){
+ closeMd();
+ if(!oid)oid="SK-"+Array.prototype.map.call(crypto.getRandomValues(new Uint8Array(7)),function(x){return"ABCDEFGHJKLMNPQRSTUVWXYZ23456789".charAt(x%32)}).join("");
+ $("payamt").textContent=total()+" "+CONFIG.currency;
+ pshow("","");$("psend").disabled=false;$("psend").textContent="أرسل طلبي";
+ $("pd").classList.remove("hide")});
+$("pback").addEventListener("click",closePd);
+$("psend").addEventListener("click",function(){
+ var b=this,did=oid; b.disabled=true;b.textContent="جاري الإرسال...";
+ var st=JSON.parse(JSON.stringify(buildS(false)));
+ var ord={v:1,id:oid,created:new Date().toISOString(),total:total(),
+  customer:{name:$("cn").value.trim(),phone:$("cp").value.trim()},
+  payment:{method:"direct"},note:$("cnote").value.trim(),
+  extras:CONFIG.extras.filter(function(e){return on(e.id)}).map(function(e){return e.id}),
+  raw:{dt:$("dt").value,tm:$("tm").value},approved:false,slug:"",S:st};
+ fetch("/api/order",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(ord)}).then(function(r){
+  if(!r.ok)throw r.status;alertOwner(ord);
+  closePd();show("ok","وصلنا تصميمك، طلب رقم "+oid+". بنتواصل معك على رقمك لنتفق على الدفع، وبعدها بتفتح دعوتك. احتفظ برقم الطلب.");
+  $("msg").scrollIntoView({behavior:"smooth",block:"center"});track(did);
+  $("f").reset();$("cnote").value="";photoURL="";galURLs=[];bgURL="";thSel=0;dirty=false;oid="";syncType();render();
+ }).catch(function(e){pshow("err",e===413?"حجم الصور كبير، اختر صوراً أصغر أو أقل.":"تعذر الإرسال. تأكد من الاتصال وجرّب مرة أخرى (لا تكرر الحوالة).");b.disabled=false;b.textContent="أرسل طلبي"})});
+function alertOwner(ord){try{var p=new URLSearchParams({"form-name":"order-alert",order_id:ord.id,total:ord.total+" دينار",customer:ord.customer.name,phone:ord.customer.phone,payer:ord.note||"",admin_link:location.origin+"/sk-admin.html"});fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:p.toString()}).catch(function(){})}catch(e){}}
+var pollT;
+function track(id){
+ if(!id)return;try{localStorage.setItem("sk_last",id)}catch(e){}
+ var box=$("st"),lo=id.toLowerCase();box.classList.remove("hide");
+ box.innerHTML='<b>طلبك رقم '+id+'</b><p id="stt">وصلنا تصميمك. بنتواصل معك لنتفق على الدفع، وأول ما نستلم الدفع بتفتح دعوتك هون لحالها.<br>إذا تأخرنا بالرد أو ما ظهر لك الرابط، راسلنا على إنستغرام: <a class="ig" href="'+CONFIG.instagram+'" target="_blank" rel="noopener"><b>@sk.design9</b></a></p>';
+ clearInterval(pollT);
+ function chk(){fetch("/api/status?id="+encodeURIComponent(id),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){
+  if(j.status==="paid"){clearInterval(pollT);
+   var full=location.origin+"/i/"+lo;
+   $("stt").innerHTML='تم تأكيد الدفع وجهزت دعوتك \u{1F389}<input id="lnk" readonly dir="ltr" value="'+full+'" aria-label="رابط دعوتك"><div class="acts"><button class="btn" id="lcp" type="button">نسخ الرابط</button><a class="btn" href="/i/'+lo+'">افتح دعوتك</a><button class="btn alt" id="ldl" type="button">تنزيل الدعوة (ملف)</button><a class="btn alt" href="/i/'+lo+'?pdf=1" target="_blank" rel="noopener">حفظ PDF</a></div>';
+   $("lnk").addEventListener("focus",function(){this.select()});
+   $("lcp").addEventListener("click",function(){var b=this,d=function(){b.textContent="تم النسخ";setTimeout(function(){b.textContent="نسخ الرابط"},1800)};try{navigator.clipboard.writeText(full).then(d,function(){$("lnk").select();d()})}catch(e){$("lnk").select();d()}});
+   $("ldl").addEventListener("click",function(){var b=this;b.disabled=true;
+    fetch("/api/invite?id="+encodeURIComponent(id),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){
+     var h=build(j.S,false),a=document.createElement("a");a.href=URL.createObjectURL(new Blob([h],{type:"text/html;charset=utf-8"}));a.download="invitation-"+lo+".html";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000)})
+    .catch(function(){}).then(function(){b.disabled=false})});
+  }}).catch(function(){})}
+ chk();pollT=setInterval(chk,15000)}
+try{var lastId=localStorage.getItem("sk_last");if(lastId&&/^SK-[A-Z0-9]{3,12}$/.test(lastId))track(lastId)}catch(e){}
+syncType();render();
+</script>
+</body>
+</html>

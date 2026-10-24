@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>دعوة</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f6f1fa;color:#3b2a4d;font-family:Tahoma,Arial,sans-serif;text-align:center;padding:24px}#m{max-width:340px;line-height:1.9;font-size:17px}</style>
+</head>
+<body>
+<div id="m">جاري تحميل الدعوة...</div>
+<script src="/sk-engine.js"></script>
+<script>
+(function(){
+ var m=document.getElementById("m");
+ var id=((location.pathname.match(/\/i\/([^\/?#]+)/)||[])[1]||"").replace(/\.html$/,"").toUpperCase();
+ if(!id){m.textContent="رابط الدعوة غير صحيح.";return}
+ fetch("/api/invite?id="+encodeURIComponent(id),{cache:"no-store"})
+ .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})})
+ .then(function(x){
+  if(!x.ok){m.textContent=x.j.error==="not_ready"?"دعوتك قيد التجهيز. بنتأكد من الدفع وبتفتح هون خلال دقائق، حدّث الصفحة بعد شوي.":"رابط الدعوة غير صحيح.";return}
+  var pdf=/[?&]pdf=1/.test(location.search);
+  var h=build(x.j.S,pdf).replace("<head>",function(){return'<head><meta name="robots" content="noindex">'+(pdf?'<style>*{-webkit-print-color-adjust:exact;print-color-adjust:exact}</style>':'')});
+  document.open();document.write(h);document.close();
+  if(pdf)setTimeout(function(){window.print()},2500)})
+ .catch(function(){m.textContent="تعذر تحميل الدعوة، تأكد من الاتصال وحدّث الصفحة."})
+})();
+</script>
+</body>
+</html>
