@@ -20,7 +20,8 @@ var TYPES={
  katb:{pl1:"والد العريس",pl2:"والد العروس",n:"حفل كتب كتاب",two:1,l1:"اسم العريس",l2:"اسم العروس",b:"﷽",t:"يتشرف أهل العروسين بدعوتكم لحضور حفل عقد القران، وتقاسم الفرحة معهم."},
  henna:{pl1:"والد العروس",pl2:"والدة العروس",n:"ليلة الحنّاء",two:0,l1:"اسم العروس",b:"✦",t:"تتشرف أسرة العروس بدعوتكم لحضور ليلة الحنّاء، لتكتمل فرحتنا بوجودكم."},
  grad:{pl1:"والد الخريج",pl2:"والدة الخريج",n:"حفل تخرج",two:0,l1:"اسم الخريج",b:"✦",t:"يسرّنا دعوتكم لمشاركتنا فرحة التخرج، وتشريفنا بحضوركم الكريم."},
- baby:{pl1:"الأب",pl2:"الأم",n:"استقبال مولود",two:0,l1:"اسم المولود",b:"✦",t:"بكل الحب والامتنان نتشرف بدعوتكم للاحتفال معنا بقدوم مولودنا الجديد."}
+ baby:{pl1:"الأب",pl2:"الأم",n:"استقبال مولود",two:0,l1:"اسم المولود",b:"✦",t:"بكل الحب والامتنان نتشرف بدعوتكم للاحتفال معنا بقدوم مولودنا الجديد."},
+  bday1:{pl1:"الأب",pl2:"الأم",n:"عيد ميلاد سنة أولى",two:0,l1:"اسم المولود",b:"✦",t:"يسعدنا دعوتكم لمشاركتنا الاحتفال بإتمام طفلنا عامه الأول، وتشريفنا بحضوركم الكريم."}
 };
 // [اسم، خلفية الغلاف، لون نص الغلاف، لون التمييز، خلفية الأقسام، نص الأقسام]
 var TH=[
@@ -246,7 +247,7 @@ body.ready .hero>.bis{animation-delay:.1s}body.ready .hero>.gt{animation-delay:.
 body.ready .hero>.ph{animation:rise 1.1s .6s cubic-bezier(.2,.7,.2,1) both,phf 5s 1.8s ease-in-out infinite}
 body.ready .hero>.names{animation:rise 1.4s .8s cubic-bezier(.2,.7,.2,1) both,glw 4.5s 2.3s ease-in-out infinite}
 body.ready .line{animation:drw 1.2s 1.15s both}
-body.ready .cd div{animation:pop .8s 1.4s both}body.ready .cd div:nth-child(2){animation-delay:1.52s}body.ready .cd div:nth-child(3){animation-delay:1.64s}body.ready .cd div:nth-child(4){animation-delay:1.76s}
+body.ready .cd{animation:pop .9s 1.4s both;transform-origin:50% 100%}
 .rv .it,.rv .btn,.rv img,.rv p{opacity:0;transform:translateY(22px);transition:opacity .8s,transform .8s}
 .rv.on .it,.rv.on .btn,.rv.on img,.rv.on p{opacity:1;transform:none}
 .rv.on .it:nth-child(3),.rv.on img:nth-child(2){transition-delay:.1s}.rv.on .it:nth-child(4),.rv.on img:nth-child(3){transition-delay:.2s}.rv.on .it:nth-child(5),.rv.on img:nth-child(4){transition-delay:.3s}.rv.on .it:nth-child(n+6),.rv.on .btn{transition-delay:.4s}
